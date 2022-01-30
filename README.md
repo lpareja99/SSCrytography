@@ -1,1 +1,1 @@
-> Go to teh wiki for references
+> Go to the wiki for references
