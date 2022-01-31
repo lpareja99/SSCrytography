@@ -12,20 +12,20 @@ c = R(12121212121) # an element of R
 state = 10**10+1
 
 # let's use knuth to compute v2
-def main():
+def knuth():
     h=a
     h_prime=m
     p=1
     p_prime=0
     r=a
-    s=1+a^2
+    s=1+a**2
     done=False
     while(not done):
         q=floor(h_prime/h)
         u=h_prime-(q*h)
         v=p_prime
-        if(u^2+v^2<s):
-            s=u^2+v^2
+        if((u**2+v**2)<s):
+            s=u**2+v**2
             h_prime=h
             h=u
             p_prime=p
@@ -34,12 +34,12 @@ def main():
             done=True
     u=u-h
     v=v-p
-    if (u^2+v^2<s):
-        s=u^2+v^2
+    if ((u**2+v**2)<s):
+        s=u**2+v**2
         return sqrt(s)
     
     
-print(main())
+print(knuth())
 
 # Not done yet, comparison part
 #comparison = 2^(int(30/2))
