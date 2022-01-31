@@ -52,7 +52,7 @@ def generateBigPrime(numBits):
         numTried = numTried + 1 #ex4
     
     #print (decimalNum, "numbers tries until prime found: ", numTried)
-    return numTried
+    return decimalNum
 
 #Exercise 4
 def expectedNumTrial(numBits):
@@ -78,4 +78,4 @@ def expectedNumTrial(numBits):
     plt.show()
 
 
-expectedNumTrial(200)
+#xpectedNumTrial(200)

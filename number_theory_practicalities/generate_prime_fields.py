@@ -30,8 +30,6 @@ NUM_BITS = 200
 # Exercise 3
 def generateBigPrime(numBits):
 
-    expectedNumTrial(numBits)
-
     numTried = 0 # exercise 4 counter
     # primes beyond 2 must be odd always
     # set first and last bite to 1 to guarantee big number and odd
