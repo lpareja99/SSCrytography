@@ -1,14 +1,11 @@
 
 from audioop import avg
 import numlib as nl
-import sys
+import math
 import random
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-
-NUM_BITS = 200
-
 """
  --------------------------------------------------------------------------------------
     Original Code: Dr. Scott Simmons
@@ -23,6 +20,8 @@ NUM_BITS = 200
     EXERCISE 4: Write a program that verifies that the expected number of tries before your prime
     generating function returns a 200-bit prime is about 200*ln(2)/2 is approx 69.
 
+--------------------------------------------------------------------------------------
+
     EXERCISE 7:(Optional) Write a program that displays the sampling distribution for the number of
      tries before finding a prime using the method outlined above. The mean and standard 
      deviation should both be about 69.
@@ -33,7 +32,10 @@ NUM_BITS = 200
 
  """
 
-# Exercise 4
+NUM_BITS = 200
+ROUNDS_PLOT = 2000
+
+# Exercise 4 counter
 def generateBigPrime(numBits):
 
     numTried = 0 # exercise 4 counter
@@ -53,23 +55,27 @@ def generateBigPrime(numBits):
     return numTried
 
 #Exercise 4
-def expectedNumTrial():
+def expectedNumTrial(numBits):
     total_tries=[]
-    for _ in range (2000):
-        total_tries.append(generateBigPrime(NUM_BITS))
+
+    # expected probability base on algorithm
+    p = (numBits * math.log(2))/2  # 1/p = kln(2)/s
+    print("Aprox expected to look at numbers loked at: ", p)
+    
+    # Manually checking
+    for _ in range (ROUNDS_PLOT):
+        total_tries.append(generateBigPrime(numBits))
     avg_tries= np.average(total_tries)
     stdv = np.std(total_tries)
+
     print("The avg of tries was", avg_tries, "with a std of",stdv)
 
     df = pd.DataFrame({
         'data': total_tries,
         'mean': avg_tries,
         'std': stdv})
-
     df.plot()
     plt.show()
 
 
-
-
-expectedNumTrial()
+expectedNumTrial(200)
