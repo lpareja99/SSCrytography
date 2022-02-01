@@ -13,15 +13,14 @@ state = 10**10+1
 
 # let's use knuth to compute v2
 def knuth():
-    h=a
-    h_prime=m
-    p=1
-    p_prime=0
-    s=1+a**2
-    done=False
-    q=floor(h_prime/h)
-    u=h_prime-(q*h)
-    v=p_prime
+    h = a
+    h_prime = m
+    p = 1
+    p_prime = 0
+    s = 1+a**2
+    q = floor(h_prime/h)
+    u = h_prime - (q*h)
+    v = p_prime - (q*p)
 
     while((u**2+v**2)<s):
         s = u**2+v**2
@@ -29,9 +28,9 @@ def knuth():
         h = u
         p_prime = p
         p = v
-        q = h_prime // h
-        u = h_prime - q*h
-        v = p_prime - q*p
+        q = floor(h_prime/h)
+        u = h_prime - (q*h)
+        v = p_prime - (q*p)
 
     u = u-h
     v = v-p
