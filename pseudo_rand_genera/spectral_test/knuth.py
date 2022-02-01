@@ -22,7 +22,7 @@ def knuth():
     q=floor(h_prime/h)
     u=h_prime-(q*h)
     v=p_prime
-    
+
     while((u**2+v**2)<s):
         s = u**2+v**2
         h_prime = h
@@ -39,7 +39,7 @@ def knuth():
     if ((u**2+v**2)<s):
         s=u**2+v**2
 
-    return sqrt(s)
+    return (s**0.5)
     
     
 print(knuth())
