@@ -36,7 +36,8 @@ def knuth():
     v=v-p
     if ((u**2+v**2)<s):
         s=u**2+v**2
-        return sqrt(s)
+
+    return sqrt(s)
     
     
 print(knuth())
