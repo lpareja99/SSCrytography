@@ -24,9 +24,9 @@ import math
 import numlib as nl
 import random
 
-NUM_BITS=200
-SMAL_NUM_BITS=random.randint(1, 10)
-A=int(123456789)
+NUM_BITS = 200
+SMAL_NUM_BITS = random.randint(1, 10)
+A = int(123456789)
     
 def fermatsTheorem(numBits,a):
     # generate prime number p
