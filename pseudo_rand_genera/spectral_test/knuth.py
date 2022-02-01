@@ -22,18 +22,19 @@ def knuth():
     q=floor(h_prime/h)
     u=h_prime-(q*h)
     v=p_prime
+    
     while((u**2+v**2)<s):
-        s=u**2+v**2
-        h_prime=h
-        h=u
-        p_prime=p
-        p=v
+        s = u**2+v**2
+        h_prime = h
+        h = u
+        p_prime = p
+        p = v
         q = h_prime // h
         u = h_prime - q*h
         v = p_prime - q*p
 
-    u=u-h
-    v=v-p
+    u = u-h
+    v = v-p
 
     if ((u**2+v**2)<s):
         s=u**2+v**2
