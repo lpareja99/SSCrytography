@@ -10,9 +10,10 @@
  --------------------------------------------------------------------------------------
 
     EXERCISE 8: Use your program above to generate a 200-bit
-     prime p and then verify that a^{p-1} = 1 mod p where a is,
-      say, 1234567, or any positive integer less than p. Note: you may wish to use
-       Python's built-in pow() function.
+    prime p and then verify that a^{p-1} = 1 mod p where a is,
+    say, 1234567, or any positive integer less than p. Note: you may wish to use
+    Python's built-in pow() function.
+
 --------------------------------------------------------------------------------------
 
     
@@ -23,14 +24,9 @@ from Ex4_7 import generateBigPrime
 import numlib as nl
 import random
 
-
-
 NUM_BITS=200
 SMAL_NUM_BITS=random.randint(1, 10)
 A=int(123456789)
-
-
-   
     
 def fermatsTheorem(numBits,a):
     # generate prime number p
@@ -44,8 +40,6 @@ def fermatsTheorem(numBits,a):
     else:
         print("no")
 
-
-
 # It will not work with 1
 # For this function we will just check up to a prime with a random number of bits up to 10 (so we have time to run it)
 
@@ -58,7 +52,6 @@ def fermatsUpToP(numBits):
             return 
     else:
         print ("The theorem works for any number under our prime:",p)
-
 
 
 fermatsTheorem(NUM_BITS,A)
