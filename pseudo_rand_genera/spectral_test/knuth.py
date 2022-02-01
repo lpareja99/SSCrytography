@@ -28,6 +28,9 @@ def knuth():
         h=u
         p_prime=p
         p=v
+        q = h_prime // h
+        u = h_prime - q*h
+        v = p_prime - q*p
 
     u=u-h
     v=v-p
