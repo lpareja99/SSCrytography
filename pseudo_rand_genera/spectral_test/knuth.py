@@ -17,23 +17,21 @@ def knuth():
     h_prime=m
     p=1
     p_prime=0
-    r=a
     s=1+a**2
     done=False
-    while(not done):
-        q=floor(h_prime/h)
-        u=h_prime-(q*h)
-        v=p_prime
-        if((u**2+v**2)<s):
-            s=u**2+v**2
-            h_prime=h
-            h=u
-            p_prime=p
-            p=v
-        else:
-            done=True
+    q=floor(h_prime/h)
+    u=h_prime-(q*h)
+    v=p_prime
+    while((u**2+v**2)<s):
+        s=u**2+v**2
+        h_prime=h
+        h=u
+        p_prime=p
+        p=v
+
     u=u-h
     v=v-p
+
     if ((u**2+v**2)<s):
         s=u**2+v**2
 
