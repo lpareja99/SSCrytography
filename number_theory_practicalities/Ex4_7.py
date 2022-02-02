@@ -54,7 +54,7 @@ def generateBigPrime(numBits):
     #print (decimalNum, "numbers tries until prime found: ", numTried)
     return decimalNum
 
-#Exercise 4
+#Exercise 7
 def expectedNumTrial(numBits):
     total_tries=[]
 
