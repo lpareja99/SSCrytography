@@ -43,22 +43,22 @@ def knuth():
         u = h_prime - (q*h)
         v = p_prime - (q*p)
 
-    # S3) Compute v2
+    # S3)a - Compute v2
     u = u-h
     v = v-p
     if ((u**2+v**2)<s):
         s=u**2+v**2
 
     v2 = s **0.5
-    print(v2)
+    #print(v2)
 
-    # set up U and V matrices
-    U = [[-h,p],[-h_prime,p]]
+    # S3)b - set up U and V matrices
+    U = np.array([[-h,p],[-h_prime,p]])
+    V = [[p_prime,h_prime],[-p,-h]]
     if(p_prime<0):
-        p = p * (-1)
-    V = [[p_prime,h_prime],[-p,-h]] #not sure if this is right
+        V = np.multiply(V,-1)
 
-    print(U,V)
+    #print(U,V)
 
     
 
