@@ -88,20 +88,48 @@ def knuth(T):
 
         s = min(s, np.dot(U[t-1],U[t-1])) #min(s, Ut*Ut) 
         k = t #last index transformation
-        j = 1 #denotes current row index
-
-    
-            
+        j = 1 #denotes current row index, initialize j
+  
         print("U: ", U)
         print("V: ", V)
         print("Current s: ", s)
 
-    # S5) 
-    
+        # S5) Transform mtx's
+        while( j!= k ): # go until j and k match
+            for i in range(1,t):
+                Vi = V[:,i]
+                Vj = V[j]
+                Ui = U[:,i]
+                Uj = U[j]
+                if((i != j) and (2 * abs(np.dot(Vi,Vj> np.dot(Vj,Vj))))):
+                    q = round(np.dot(Vi,Vj) / np.dot(Vj,Vj))
+                    Vi = Vi - q*Vj # Vi = Vi - q*Vj
+                    Uj = Uj + q*Ui # Uj = Uj + q*Ui
+                    s = min(s,np.dot(Uj,Uj)) # s = min(s,Uj*Uj)
+                    k = j
+                    
+            # S6) Advance j
+            if(j == t):
+                j = 1
+            else:
+                j = j+1
+        
+        # S7) Prepare for search --> CONFUSING
+        #set X and Y = [0,0,0,...,0,0,0] --> stuck here 
+        k = t
+        zj = []
+        for j in range(0,t-1):
+            zj.append(math.floor(math.sqrt(np.dot(V[j],V[j]*(s/(m**2))))))
 
-    
-    
-    
+        print("zj:", zj)
+
+        # S8) advance Xk
+        # S9) Advance k
+        # S10) Decrease k
+
+
+
+        
 print(knuth(3))
 
 # Not done yet, comparison part
