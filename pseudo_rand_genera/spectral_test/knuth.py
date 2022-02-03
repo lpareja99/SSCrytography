@@ -89,13 +89,9 @@ def knuth(T):
         s = min(s, np.dot(U[t-1],U[t-1])) #min(s, Ut*Ut) 
         k = t #last index transformation
         j = 1 #denotes current row index, initialize j
-  
-        print("U: ", U)
-        print("V: ", V)
-        print("Current s: ", s)
 
-        # S5) Transform mtx's
-        while( j!= k ): # go until j and k match
+        while( j!= k ): # go until j and k match (S6)
+            # S5) Transform mtx's
             for i in range(1,t):
                 Vi = V[:,i]
                 Vj = V[j]
@@ -115,12 +111,15 @@ def knuth(T):
                 j = j+1
         
         # S7) Prepare for search --> CONFUSING
+        X = np.zeros(t,dtype=int)
+        Y = np.zeros(t,dtype=int)
         #set X and Y = [0,0,0,...,0,0,0] --> stuck here 
         k = t
         zj = []
         for j in range(0,t-1):
             zj.append(math.floor(math.sqrt(np.dot(V[j],V[j]*(s/(m**2))))))
 
+    
         print("zj:", zj)
 
         # S8) advance Xk
@@ -131,10 +130,3 @@ def knuth(T):
 
         
 print(knuth(3))
-
-# Not done yet, comparison part
-#comparison = 2^(int(30/2))
-#if (main()>= comparison ):
-    #print("passed")
-
-# We want v2 to >= than 2^30/2
