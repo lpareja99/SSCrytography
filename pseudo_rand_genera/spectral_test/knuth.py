@@ -90,7 +90,7 @@ def knuth(T):
         k = t #last index transformation
         j = 1 #denotes current row index
 
-
+    
             
         print("U: ", U)
         print("V: ", V)
