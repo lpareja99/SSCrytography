@@ -3,7 +3,6 @@ from math import floor
 import math
 import numlib as nl
 import numpy as np
-
 '''
 
 '''
@@ -110,23 +109,41 @@ def knuth(T):
             else:
                 j = j+1
         
-        # S7) Prepare for search --> CONFUSING
+        # S7) Prepare for search 
         X = np.zeros(t,dtype=int)
         Y = np.zeros(t,dtype=int)
-        #set X and Y = [0,0,0,...,0,0,0] --> stuck here 
         k = t
-        zj = []
+        Z = []
         for j in range(0,t-1):
-            zj.append(math.floor(math.sqrt(np.dot(V[j],V[j]*(s/(m**2))))))
-
+            Z.append(math.floor(math.sqrt(np.dot(V[j],V[j]*(s/(m**2))))))
     
-        print("zj:", zj)
+        print("Z:", Z)
 
         # S8) advance Xk
+        if (X[k] == Z[k]):
+            #Go to step 10
+            print("go to step 10")
+        else: 
+            X[k] = X[k] + 1
+            Y[k] = Y[k] + U[k] #no sure about this Y = Y + Uk
+
         # S9) Advance k
+        while ( k <= t): # < or <=
+            k = k+1
+            X[k] = -Z[k]
+            # Y = Y - 2*Z[k]*U[k] how do represent Y, is it Y[k]
+        
+        if ( k > t ):
+            s = min(s, np.dot(Y,Y))
+
         # S10) Decrease k
-
-
+        k = k-1
+        if( k >= 1):
+            #go to step 8
+            print("return to step 8")
+        else:
+            vt = math.sqrt(s)
+            print(vt)
 
         
 print(knuth(3))
