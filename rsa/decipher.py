@@ -1,4 +1,21 @@
 
+"""
+ --------------------------------------------------------------------------------------
+    Authors: Marina Amorim, Laura Pareja
+    Class: SS Math - Cryptography
+    Topic: RSA
+    Date Creation: 02/01/22
+    Last Date Modified: 02/01/22
+
+ --------------------------------------------------------------------------------------
+
+   Decrypt to numbers and to text algorithm
+--------------------------------------------------------------------------------------
+
+    
+ """
+
+
 import numlib as nl
 from sympy.ntheory.factor_ import totient
 
