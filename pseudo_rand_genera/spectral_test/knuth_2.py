@@ -105,9 +105,10 @@ def knuth(T):
         k = t-1 #last index transformation
         j = 0 #denotes current row index, initialize j
         print('step 4) ')
-      
-
-
+        print("LOOK U AND V")
+        print(U)
+        print(V)
+        counter=0
         done_1=False
         while (not done_1):#while( j!= k ): # go until j and k match (S6)
             # S5) Transform mtx's
@@ -116,7 +117,7 @@ def knuth(T):
                 #Vj = V[j]
                 #Ui = U[:,i]
                 #Uj = U[j]
-                if((i != j) and  ((abs(2*(np.dot(V[:,i],V[j]))))>np.dot(V[j],V[j]))):  
+                if((i != j) and ((abs(2*(np.dot(V[:,i],V[j]))))>np.dot(V[j],V[j]))):  # I think the proble is the second paet of the if statement
                     print("inside loop")
                     q = math.floor((np.dot(V[:,i],V[j]) / np.dot(V[j],V[j]))+0.5)
                     V[:,i] = V[:,i] - (q * V[j]) # Vi = Vi - q*Vj
@@ -138,7 +139,9 @@ def knuth(T):
             if (j == k):
                 print("reached")
                 done_1=True
-
+            
+            counter=counter+1
+            
             print("SEE U AND V ||||||")
             print(U)
             print(V)
@@ -178,7 +181,7 @@ def knuth(T):
         #     Z.append(math.floor((np.dot(V[j],V[j]*(s/(m**2))))**0.5))
     
         # print("Z:", Z)
-
+        print("COUNTER",counter)
         # S7) Prepare for search 
         X = np.zeros(t,dtype=int)
         Y = np.zeros(t,dtype=int)
