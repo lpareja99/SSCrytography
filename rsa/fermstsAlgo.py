@@ -41,14 +41,6 @@ def fermatfactor(n):
     return [int(a - b),int(a+b)]
 
 
-def factorFermat(n):
-    a = math.ceil(math.sqrt(n))
-    b = math.sqrt(a**2 -n)
-    while not b:
-        a+= 1
-        b = math.sqrt(a*a-n)
-    return [(a-b),(a+b)]
-
 
 
 
