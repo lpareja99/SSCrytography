@@ -109,8 +109,8 @@ def knuth(T):
         print(U)
         print(V)
         counter=0
-        done_1=False
-        while (not done_1):#while( j!= k ): # go until j and k match (S6)
+        
+        while( j!= k ): # go until j and k match (S6)
             # S5) Transform mtx's
             for i in range(0,t):
                 #Vi = V[:,i]
@@ -136,11 +136,7 @@ def knuth(T):
             else:
                 j = j+1
 
-            if (j == k):
-                print("reached")
-                done_1=True
             
-            counter=counter+1
             
             print("SEE U AND V ||||||")
             print(U)
