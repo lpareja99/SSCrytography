@@ -110,6 +110,36 @@ def knuth(T):
         print(V)
         counter=0
         
+        
+        
+    
+        while j != k: # go until j and k match (S6)
+            for i in range(t-1):
+                #Vi = V[:,i]
+                Vi = V[i]
+                Vj = V[j]
+                #Ui = U[:,i]
+                Ui = U[i]
+                Uj = U[j]
+                if i != j and abs(2*np.dot(Vi,Vj)) > np.dot(Vj, Vj):
+                    q = math.floor(np.dot(Vi,Vj) / np.dot(Vj,Vj)+ 0.5)
+                    V[i] = Vi - q*Vj # Vi = Vi - q*Vj
+                    U[j] = Uj + q*Ui # Uj = Uj + q*Ui
+                    s = min(s, np.dot(Uj,Uj)) # s = min(s,Uj*Uj)
+                    k = j
+
+            # S6) Advance j
+            if(j == t - 1):
+                j = 0
+            else:
+                j = j + 1
+            print(j, k)
+
+        print("U = \n", U); print("V = \n", V)
+        quit()
+
+
+        
         while( j!= k ): # go until j and k match (S6)
             # S5) Transform mtx's
             for i in range(0,t):
@@ -137,7 +167,8 @@ def knuth(T):
                 j = j+1
 
             
-            
+            quit()
+
             print("SEE U AND V ||||||")
             print(U)
             print(V)
