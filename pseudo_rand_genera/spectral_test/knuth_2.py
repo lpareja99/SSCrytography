@@ -114,7 +114,7 @@ def knuth(T):
         
     
         while j != k: # go until j and k match (S6)
-            for i in range(t-1):
+            for i in range(0,t):
                 #Vi = V[:,i]
                 Vi = V[i]
                 Vj = V[j]
