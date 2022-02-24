@@ -78,4 +78,5 @@ def expectedNumTrial(numBits):
     plt.show()
 
 
-#xpectedNumTrial(200)
+#expectedNumTrial(200)
+#print(generateBigPrime(200))
