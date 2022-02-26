@@ -4,15 +4,26 @@ import numlib as nl
 #             probability that a uniformly randomly chosen element 
 #             of {Z}/p^* is a generator
 
-p = 303 + pow(2,100) - pow(3,100) + pow(5,100)
-p_generators = nl.factor(p-1) # prime divisor numbers
-F = nl.Zmodp(p)  # F is now the group (Z/p)*
+p = 303 + pow(2,100) - pow(3,100) + pow(5,100) #number 2 use
+a = 101*5**77 #possible generator
 
-# ARE WE SUPPOSED TO GET g RANDOMLY PRIME GENERATED?
-g = F(101*5**77) # g is now an element of F
-g_order = nl.mulorder(g, exponent = p-1) # mulorder_ accepts a list of potential orders
+def discr_alg(p,a):
+    p_generators = nl.factor(p-1) # list of generators
+    F = nl.Zmodp(p)  # (Z/p)*
+    g = F(a) # g element of F
+    g_order = nl.mulorder(g, exponent = p-1) #return g_order
 
+    # if g is a generator:
+    #   - g is prime
+    #   - g-order == p-1
+    print("p: ", p,", P divisors: ", p_generators)
+    print("g: ",g,", g_order: ", g_order)
+    print("Is g a generator? :", g_order == p-1)
 
-print("p divisors: ", p_generators)
-print("g_order: ", g_order)
-print(g_order == p-1)
+def prob_generator(p):
+    p_generators = nl.factor(p-1) # list of generators
+    prob = len(p_generators)/p
+    print("probability of g being generator given p: ", prob)
+
+#discr_alg(p,a)
+prob_generator(p)
