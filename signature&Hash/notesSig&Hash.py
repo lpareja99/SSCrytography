@@ -1,16 +1,11 @@
 """
  --------------------------------------------------------------------------------------
-    Original Code: Dr. Scott Simmons
     Authors: Marina Amorim, Laura Pareja
     Class: SS Math - Cryptography
     Topic: RSA Signature and Hash
     Date Creation: 02/23/22
     Last Date Modified: 02/24/22
-
  """
-
-
-
 
 from hashlib import sha256
 from random import random
@@ -36,41 +31,6 @@ def OS2IP(X):
     """Return the integer primitive x for the octet-string X."""
     # the sum below is the same as: int.from_bytes(X, byteorder = 'big')
     return sum([x * 256**i for i, x in enumerate(X[::-1])])
-
-def RSAdecrypt(n, d, ciphertext):
-    
-    """Return message decrypted from ciphertext using key {n, d}.
-
-    Args:
-        n (int): the modulus.
-        d (int): the decrypting exponent.
-        ciphertext (int): the message to decrypt.
-
-    Returns:
-        bytes. A bytes-string representing the decrypted message.
-    """
-    # get the padded message
-    m = pow(ciphertext, d, n)
-    k = math.floor(math.log(n, 256))
-    message = I2OSP(m, k)
-
-    # strip away the padding
-    error = False
-    if message[0] != 0:
-        error = True
-    message = message[1:]
-    if message[0] != 2:
-        error = True
-    message = message[1:]
-    while message[0] != 0:
-        message = message[1:]
-    if message[0] != 0:
-        error = True
-    message = message[1:]
-
-    assert not error, "decryption error"
-
-    return message
 
 def RSAKeyPair(p,q):
 
