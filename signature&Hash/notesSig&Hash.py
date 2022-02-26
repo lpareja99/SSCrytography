@@ -9,6 +9,7 @@
 
 from hashlib import sha256
 from random import random
+from tkinter import N
 from exercise12 import I2OSP, OS2IP
 import random
 import numlib as nl
@@ -48,60 +49,81 @@ def RSAKeyPair(p,q):
     #print(" Public RSA key: \nn:", n, "\ne: ", e)
     return [n,e,d]
 
-
-
 def RSAsign(c,d,n): # exercise
     # 1) encript the msg
-    chash = int.from_bytes(sha256(c).digest(),byteorder='big') # hash in bitstring form
-    #c_int = OS2IP(chash) #convert to integer using OS2IP int_m
-
-    # 2) create signature
+    chash = int.from_bytes(sha256(c).digest(),byteorder='big')
     # The signature will be an iteger oin the range of the RSA key length
-    s = pow(chash,d,n) # (hash(msg))^d.mod(n)
+    s = pow(chash,d,n) 
     print (" s: ", s)
-
     return s
 
-
-def authenticate(c,s,n,e):
-
-    valid = False
-
-    
-    # 2) authenticate hash_msg and decrypt_c are the same 
-    hash_msg = pow(s,e,n)
-    
-    if(hash_msg == c):  valid = True
-
+def authenticate(c,s,n,e): # I THINK TO DELETE
+    hash_msg = pow(s,e,n)   
+    valid = True if hash_msg == c else False
     return valid
 
-def RSAverify(msg):
+def RSAverify(msg, s, public_k):
+    e = public_k[1]
+    n = public_k[0]
 
-    # Let's get our n,e,d using our RSAkey pair methods
+    # RSA verify signature
+    # Decrypt the signatuere using the public key and compare the hash
+    #  from the signature to the hash of the originally signed message
+    hash = int.from_bytes(sha256(msg).digest(), byteorder='big')
+    hashSig = pow(s, e, n)
+    valid = True if hash == hashSig else False
+    return valid
+
+
+# Exercise 15: Write a function called RSAsign that takes a (bytes-string)
+#              message and outputs its signature as an integer.
+def ex15(c,p,q):
+    print("EXERCISE 15")
+    print(" Cyper msg: ", c)
+    keyPairs = RSAKeyPair(p,q)
+    n = keyPairs[0]
+    d =  keyPairs[2]
+    s = RSAsign(c,d,n)
+    print(" New signature: ", s)
+
+# Exercise 16: Write a function called RSAverify that takes as input a message
+#              and a signature, verifies the authenticity and integrity of the 
+#              message, and that outputs True or False, accordingly.
+def ex16(c,p,q):
+
+    keyPair = RSAKeyPair(p,q) #create key pairs
+    n = keyPair[0]
+    e = keyPair[1]
+    d = keyPair[2]
+    s = RSAsign(c,d,n) #create signature
+    public_key = [n,e]
+
+    # Let's verify with our message
+    valid1 = RSAverify(c,s,public_key)
+    print(" Verification from: \n c: ",c,"\n s: ", s, valid1)
+    # Let's verify with a tempered message
+    valid2 = RSAverify(b"Tempered message",s,public_key)
+    print(" Verification from: \n c: ",b"Tempered message","\n s: ", s, valid2)
+
+# Exercise 17: Create RSA public and private keys and send the public key to
+#              Simmons so he can send you a signed message that you can decode 
+#              and verify.
+def ex17(p,q):
     keyPair = RSAKeyPair(p,q)
     n = keyPair[0]
     e = keyPair[1]
     d = keyPair[2]
-
-    # Let's get our signture
-
-    s = RSAsign(c,d,n)
-
-    # RSA verify signature
-    # Decrypt the signatuere using the public key and compare the hash
-    #  from the signature to the hash of the originally signed message:
+    print(" RSA Pair of keys generated: \n  Public Key {n,e} and Private Key {n,d}")
+    print(" n: ", n)
+    print(" e: ", e)
+    print(" d: ", d)
     
-    hash = int.from_bytes(sha256(msg).digest(), byteorder='big')
-    hashFromSignature = pow(s, e, n)
-    print("Signature valid:", hash == hashFromSignature)
 
+    
 
-
-
-# Let's verify with our message
-RSAverify(c)
-# Let's verify with a tempered message
-RSAverify(b"Tempered message")
+ex15(c,p,q)
+ex16(c,p,q)
+ex17(p,q)
 
 
 
