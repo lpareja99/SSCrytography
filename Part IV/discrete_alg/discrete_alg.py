@@ -7,7 +7,7 @@ import numlib as nl
 p = 303 + pow(2,100) - pow(3,100) + pow(5,100) #number 2 use
 a = 101*5**77 #possible generator
 
-def discr_alg(p,a):
+def discrAlg(p,a):
     p_generators = nl.factor(p-1) # list of generators
     F = nl.Zmodp(p)  # (Z/p)*
     g = F(a) # g element of F
@@ -20,10 +20,10 @@ def discr_alg(p,a):
     print("g: ",g,", g_order: ", g_order)
     print("Is g a generator? :", g_order == p-1)
 
-def prob_generator(p):
+def probOfgenerator(p):
     p_generators = nl.factor(p-1) # list of generators
     prob = len(p_generators)/p
     print("probability of g being generator given p: ", prob)
 
-#discr_alg(p,a)
-prob_generator(p)
+#discrAlg(p,a)
+probOfgenerator(p)
