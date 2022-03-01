@@ -26,4 +26,4 @@ def probOfgenerator(p):
     print("probability of g being generator given p: ", prob)
 
 #discrAlg(p,a)
-probOfgenerator(p)
+print(probOfgenerator(p))

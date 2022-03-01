@@ -9,7 +9,7 @@
 
 from hashlib import sha256
 from random import random
-from tkinter import N
+#from tkinter import N
 from exercise12 import I2OSP, OS2IP
 import random
 import numlib as nl
@@ -61,6 +61,41 @@ def authenticate(c,s,n,e): # I THINK TO DELETE
     hash_msg = pow(s,e,n)   
     valid = True if hash_msg == c else False
     return valid
+
+# Decrypt method from Simmons
+def RSAdecrypt(n, d, ciphertext):
+    """Return message decrypted from ciphertext using key {n, d}.
+
+    Args:
+        n (int): the modulus.
+        d (int): the decrypting exponent.
+        ciphertext (int): the message to decrypt.
+
+    Returns:
+        bytes. A bytes-string representing the decrypted message.
+    """
+    # get the padded message
+    m = pow(ciphertext, d, n)
+    k = math.floor(math.log(n, 256))
+    message = I2OSP(m, k)
+
+    # strip away the padding
+    error = False
+    if message[0] != 0:
+        error = True
+    message = message[1:]
+    if message[0] != 2:
+        error = True
+    message = message[1:]
+    while message[0] != 0:
+        message = message[1:]
+    if message[0] != 0:
+        error = True
+    message = message[1:]
+
+    assert not error, "decryption error"
+
+    return message
 
 def RSAverify(msg, s, public_k):
     e = public_k[1]
@@ -117,13 +152,24 @@ def ex17(p,q):
     print(" n: ", n)
     print(" e: ", e)
     print(" d: ", d)
+
+
+# It is giving me decryption errors
+def ex16_pt2(p,q):
+    keyPair =RSAKeyPair(p,q)
+    n = keyPair[0]
+    d = keyPair[2]
+    #RSAdecrypt(n,d,450401155434731371118421813986941421709598043925196498331270928327438580575483032645117800146428215)
+    #print(RSAdecrypt(n,d,717237654965488152560168993455511154625980237096791741000876995711454224297915427772828765964856628))
+    
     
 
     
 
-ex15(c,p,q)
-ex16(c,p,q)
-ex17(p,q)
+#ex15(c,p,q)
+#ex16(c,p,q)
+ex16_pt2(p,q)
+#ex17(p,q)
 
 
 
