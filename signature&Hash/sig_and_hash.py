@@ -102,7 +102,8 @@ def RSAverify(msg, s, public_k):
     n = public_k[0]
 
     #print(msg)
-    msg = bin(msg).encode()
+    #msg = bin(msg).encode()
+    msg = b'msg'
 
     # RSA verify signature
     # Decrypt the signatuere using the public key and compare the hash
