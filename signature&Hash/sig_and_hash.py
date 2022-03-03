@@ -63,6 +63,8 @@ def authenticate(c,s,n,e): # I THINK TO DELETE
     return valid
 
 # Decrypt method from Simmons
+#   Note: In the moment you create a signature, to decript it, you pas the public key {n,e} instead of thh
+#         private key {n,d} and the signature intead of the ciphertext.
 def RSAdecrypt(n, d, ciphertext):
     """Return message decrypted from ciphertext using key {n, d}.
 
