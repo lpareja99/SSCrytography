@@ -1,11 +1,13 @@
-#Ambient key = {G,g} of order n
+#                                   ----- ElGamal Encryptation -----
+
+# AMBIENT KEY = {G,g} of order n
 #   everyonr in the planet has g
 
-#you: 
+# YOU: 
 #   1) create random d in Z/n --> private key
 #   2) computer (h) h = g^d --> public key
 
-#Athena:
+# ATHENA:
 #   1) wants to encrypt m in G
 #   2) choose r randomly in Z/n
 #   3) computes c1 = g^r --> part of a msg? element of G
@@ -13,9 +15,9 @@
 #   5) sends {c1,c2} --> encripted msg (chipertext) divide in two
 #   6) r can be discarded after this is done
 
-#   do to use {c1,c2} to obtain m (m is the msg) non encripted
+#   use {c1,c2} to obtain m (m is the msg) non encripted
 
-#you (after receiving {c1,c2})
+# YOU (after receiving {c1,c2})
 #   1) compute c2*c1^(-d) --> m
 #   2) this is the same as --> (h^(r) * m) * ( g^(r))^(-d)
 #                               g^(d*r) * m * g^(r* -d)
@@ -24,4 +26,4 @@
 
 
 # take G = (Z/p)*
-# then get G to be an eleptic curve -
+# then get G to be an eleptic curve 
