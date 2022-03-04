@@ -27,3 +27,5 @@ def probOfgenerator(p):
 
 #discrAlg(p,a)
 print(probOfgenerator(p))
+
+
