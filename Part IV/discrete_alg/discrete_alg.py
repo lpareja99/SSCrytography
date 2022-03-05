@@ -33,3 +33,6 @@ def probOfgenerator(p):
 
 #discrAlg(p,a)
 probOfgenerator(p)
+
+
+
