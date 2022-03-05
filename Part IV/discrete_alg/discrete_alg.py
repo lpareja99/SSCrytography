@@ -1,4 +1,6 @@
 import numlib as nl
+import sympy
+from sympy import totient 
 
 # Exercise 1: With p = 303+2^{100}-3^{100}+5^{100}, compute the 
 #             probability that a uniformly randomly chosen element 
@@ -21,9 +23,13 @@ def discrAlg(p,a):
     print("Is g a generator? :", g_order == p-1)
 
 def probOfgenerator(p):
-    p_generators = nl.factor(p-1) # list of generators
-    prob = len(p_generators)/p
+    # Z/p is a cyclic group because p is prime
+    # The number of coprime elements to p is p-1.
+    # Now let's use the euler phi function on p-1 to find the num
+    # of generators
+    generators = sympy.totient(p-1)
+    prob = generators/p
     print("probability of g being generator given p: ", prob)
 
 #discrAlg(p,a)
-print(probOfgenerator(p))
+probOfgenerator(p)
