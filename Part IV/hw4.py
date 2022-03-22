@@ -15,7 +15,7 @@ test = 8*187
 test2= 1234 * -47590804135
 print(R_2(test2))
 
-def SolveMult(z,myMod,l):
+def SolveAddG(z,myMod,l):
     a,r,s = nl.xgcd(z,myMod)
     R_1 = nl.Zmod(a)
     if (R_1(a)==0):
@@ -25,12 +25,12 @@ def SolveMult(z,myMod,l):
     else:
         return False
 
-print("Ex 1",SolveMult(8,29,17))
-print("Ex 2",SolveMult(1234,2131233,98765))
+print("Ex 1",SolveAddG(8,29,17))
+print("Ex 2",SolveAddG(1234,2131233,98765))
 
 
-def testMult(z,myMod,l):
-    mult = SolveMult(z,myMod,l)
+def testAdd(z,myMod,l):
+    mult = SolveAddG(z,myMod,l)
     mult *= z
     R_test =  nl.Zmod(myMod)
     if (R_test(mult)==l):
@@ -38,7 +38,32 @@ def testMult(z,myMod,l):
     else:
         return False
 
-print(testMult(8,29,17))
-print(testMult(1234,2131233,98765))
+print(testAdd(8,29,17))
+print(testAdd(1234,2131233,98765))
+
+# Take equationz^x = l mod myMod
+
+def SolveMultG(z,myMod,l):
+    F = nl.Zmodp(myMod)
+    multOrder = nl.mulorder(F(z))
+    for x in range(myMod):
+        if (multOrder ** x ==l):
+            return x
+    #return False
+
+print(SolveMultG(5,257,78))
+print(SolveMultG(15551,8675309,1357))
+ 
+# y^2 = x^3 +ax +b mod Mymod
+def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
+    F =nl.Zmodp(myMod)
+    E = nl.EllCurve(F(a),F(b), debug=True)
+    for pt in nl.affine(E):
+        print(pt)
+    E(p1_x,p1_y)
+    E(p2_x,p2_y)
+
         
+
+
 
