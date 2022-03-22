@@ -19,6 +19,8 @@ print(solution)
 
 test = 8*187
 print(R_2(test))
+test2= 1234* -47590804135
+print()
 
 def SolveMult(z,myMod,l):
     a,r,s = nl.xgcd(z,myMod)
@@ -26,7 +28,8 @@ def SolveMult(z,myMod,l):
     R_2 = nl.Zmod(myMod)
     b=l/a
     solution = r*int(b) 
-    print(solution)
     return(solution)
 
+print("Ex 1",SolveMult(8,29,17))
+print("Ex 2",SolveMult(1234,2131233,98765))
 
