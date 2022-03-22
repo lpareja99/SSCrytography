@@ -1,0 +1,68 @@
+Discrete Algorithms:
+
+    x = (11)^-1 * 30
+
+    1&2) Solving Additive Groups  (n * x =  a in Z/p)                   LEVEL 1
+        * There is always a solution *
+       
+        n = 11
+        a = 30                                              a is relatively prime to p
+        p = 43 // use prime number                          p = prime number
+        F = nl.Zmodp(p) // makes sure p is prime            F = field (ring where every non zero has a multiplicative)
+        repr(F(n))                                          representitive of number 11 in the field
+        inverse = F(n)**-1                                  4
+        s = F(n)**-1 + F(a)                                 34 answer
+
+    3&4) Solving Multiplicative Groups ( 543**x = 12 in (Z/547)* )      LEVEL 2
+        * First we need to check if there is a possible solution *
+        * We need a generator to make sure we have a solution *
+
+        n = 543
+        a = 12
+        p = 547
+        F = nl.Zmodp(p)
+        g = nl.mulorder(F(n))                               returns a generator in the field
+        for x in range (p):                                 we need to brutforce it, we can not calculate the inverse directly
+            if (n ** x == a);
+                s = x                                       answer
+
+    5&6) Solving Elliptic Curves:                                       LEVEL 3
+
+        p = 47
+        F = nl.Zmodp(p)                                     field
+        q = F(40)                                           q value in elliptic curve function
+        r = F(43)                                           r value in elliptic curve function
+        E = nl.EllCurve(q,r, debug = True)                  E = elliptic curve (x,y) e (z/47)x(Z/47)
+        E(1,2)                                              error because P(1,2) is not in the elliptic curve
+        len(list(nl.affine(E)))                             return order of the group - 1 (ifinity point)
+        E(4,19)*0                                           [0: 1: 0] point of infinity or identity element, it has the elemeny insteal of 2
+        
+        for pt in nl.affine(E):                             return all point in the curve except of the infinity one
+            print (pt)
+
+        E(4,28) + E(7,33)                                   addition of two pt on the elliptic curve 
+    
+
+Ellipic Curve over Z/47:
+    - y**2 = x**3 + qx + r                                 shape of the elliptic curve overall
+    - P = (1,2)
+    - 4 == (1+40+43) mod 47? --> 4 =/= 37                  P is not in the elliptic curve 
+    - E has 49 elements
+    - We do not knwo if it has a solution, we need to knwo if it has a generator.
+
+                                    IMPORTANT NOTE
+*** Every elliptic curve turn to be a cyclic group or a product of an elliptic curve ***
+
+
+
+-------    Homework Answers    --------
+
+Aditive Groups:
+    1) x = 120
+    2) x = -47590804135
+Multiplicative Groups:
+    3) x =
+    4) x = 
+Elliptic Curves:
+    5) x = 
+    7) x = 
