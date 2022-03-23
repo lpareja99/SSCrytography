@@ -42,7 +42,7 @@ print(testAdd(8,29,17))
 print(testAdd(1234,2131233,98765))
 
 # Take equationz^x = l mod myMod
-
+# z=5 l=78 mymod=257
 def SolveMultG(z,myMod,l):
     F = nl.Zmodp(myMod)
     multOrder = nl.mulorder(F(z))
@@ -50,6 +50,10 @@ def SolveMultG(z,myMod,l):
         if (multOrder ** x ==l):
             return x
     #return False
+
+
+
+
 
 print(SolveMultG(5,257,78))
 print(SolveMultG(15551,8675309,1357))
