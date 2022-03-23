@@ -32,7 +32,7 @@ Discrete Algorithms:
         F = nl.Zmodp(p)                                     field
         q = F(40)                                           q value in elliptic curve function
         r = F(43)                                           r value in elliptic curve function
-        E = nl.EllCurve(q,r, debug = True)                  E = elliptic curve (x,y) e (z/47)x(Z/47)
+        E =  nl.EllCurve(q,r, debug = True)                  E = elliptic curve (x,y) e (z/47)x(Z/47)
         E(1,2)                                              error because P(1,2) is not in the elliptic curve
         len(list(nl.affine(E)))                             return order of the group - 1 (ifinity point)
         E(4,19)*0                                           [0: 1: 0] point of infinity or identity element, it has the elemeny insteal of 2
@@ -61,8 +61,10 @@ Aditive Groups:
     1) x = 120
     2) x = -47590804135
 Multiplicative Groups:
-    3) x =
-    4) x = 
+    3) x = 198  ;  g = 256
+    4) x =      ; g = 8675308
+    a)
+    b) 
 Elliptic Curves:
     5) x = 
     7) x = 
