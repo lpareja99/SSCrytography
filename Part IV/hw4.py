@@ -46,19 +46,16 @@ print(testAdd(1234,2131233,98765))
 
 def solveMulgG(n,a,p):
     F = nl.Zmodp(p)
-    g = nl.mulorder(F(n))
-    #print(" generator: ", g)
-    for x in range (p): 
-        print(x)       
-        if(F(pow(n,x)) == a):
-            print(" x: ", x)
+    for x in range (p):    
+        if(F(n)**x == F(a)):
+            return x
 
 #exercise 3
 print("exercise 3: ")
 #solveMulgG(5,78,257)
 #exercise 4
 print("exercise 4: ")
-solveMulgG(15551,1357,4337654)
+print(solveMulgG(15551,1357,8675309))
 #Multiplicative Marina&Laura 
 #solveMulgG(13,4,89)
 #olveMulgG(197, 23, 3001)
