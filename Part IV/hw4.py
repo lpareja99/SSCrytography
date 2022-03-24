@@ -1,19 +1,7 @@
 
 # wghat multiplies 
 from re import L
-
 import numlib as nl
-
-R_2 = nl.Zmod(2131233)
-
-
-
-test = 8*187
-
-
-#print(R_2(test))
-test2= 1234 * -47590804135
-print(R_2(test2))
 
 def SolveAddG(z,myMod,l):
     a,r,s = nl.xgcd(z,myMod)
@@ -25,10 +13,6 @@ def SolveAddG(z,myMod,l):
     else:
         return False
 
-print("Ex 1",SolveAddG(8,29,17))
-print("Ex 2",SolveAddG(1234,2131233,98765))
-
-
 def testAdd(z,myMod,l):
     mult = SolveAddG(z,myMod,l)
     mult *= z
@@ -38,11 +22,6 @@ def testAdd(z,myMod,l):
     else:
         return False
 
-print(testAdd(8,29,17))
-print(testAdd(1234,2131233,98765))
-
-# Take equationz^x = l mod myMod
-# z=5 l=78 mymod=257
 
 def solveMulgG(n,a,p):
     F = nl.Zmodp(p)
@@ -50,15 +29,11 @@ def solveMulgG(n,a,p):
         if(F(n)**x == F(a)):
             return x
 
-#exercise 3
-print("exercise 3: ")
-#solveMulgG(5,78,257)
-#exercise 4
-print("exercise 4: ")
-print(solveMulgG(15551,1357,8675309))
-#Multiplicative Marina&Laura 
-#solveMulgG(13,4,89)
-#olveMulgG(197, 23, 3001)
+print("Exercise 1",SolveAddG(8,29,17), testAdd(8,29,17))
+print("Exercise 2",SolveAddG(1234,2131233,98765), testAdd(1234,2131233,98765))
+print("exercise 3: ", solveMulgG(5,78,257))
+print("exercise 4: ", solveMulgG(15551,1357,8675309))
+
  
 # y^2 = x^3 +ax +b mod Mymod
 def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):

@@ -29,16 +29,20 @@ Discrete Algorithms:
     5&6) Solving Elliptic Curves:                                       LEVEL 3
 
         p = 47
-        F = nl.Zmodp(p)                                     field
+        F = nl.Zmodp(p, negatives = True)                   Field including negatives values
         q = F(40)                                           q value in elliptic curve function
         r = F(43)                                           r value in elliptic curve function
         E =  nl.EllCurve(q,r, debug = True)                  E = elliptic curve (x,y) e (z/47)x(Z/47)
+        
         E(1,2)                                              error because P(1,2) is not in the elliptic curve
         len(list(nl.affine(E)))                             return order of the group - 1 (ifinity point)
         E(4,19)*0                                           [0: 1: 0] point of infinity or identity element, it has the elemeny insteal of 2
         
         for pt in nl.affine(E):                             return all point in the curve except of the infinity one
             print (pt)
+
+
+        
 
         E(4,28) + E(7,33)                                   addition of two pt on the elliptic curve 
     
@@ -49,9 +53,15 @@ Ellipic Curve over Z/47:
     - 4 == (1+40+43) mod 47? --> 4 =/= 37                  P is not in the elliptic curve 
     - E has 49 elements
     - We do not knwo if it has a solution, we need to knwo if it has a generator.
+    - (x,y) in FxF
+    - E(13,9) + E(13,-9) = [0:1:0]                         point of infinity or identy
+    - P + Q = R beacuse P + Q + R = 0
+    - P + P takes the tangent line in the elliptic curve
+    
 
                                     IMPORTANT NOTE
 *** Every elliptic curve turn to be a cyclic group or a product of an elliptic curve ***
+* A real elliptic curve has more points than we can print
 
 
 
@@ -61,10 +71,8 @@ Aditive Groups:
     1) x = 120
     2) x = -47590804135
 Multiplicative Groups:
-    3) x = 198  ;  g = 256
-    4) x =      ; g = 8675308
-    a)
-    b) 
+    3) x = 198 
+    4) x = 2027473    
 Elliptic Curves:
     5) x = 
     7) x = 
