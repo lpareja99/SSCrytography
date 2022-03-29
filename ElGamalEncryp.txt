@@ -1,0 +1,12 @@
+1 - ElGamal Encrytation Scheme
+
+    a. Public key encryption system
+    b. Use of zero knowledge encryptation 
+    c. How to yo validate this -- use of signatures
+
+    {G,g,n}
+    where:
+        - G is a cyclic group
+        - g is a generator og G G =<g>
+        - n is the size of G |G|
+    

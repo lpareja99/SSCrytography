@@ -1,5 +1,6 @@
 
 # wghat multiplies 
+from distutils.log import debug
 from re import L
 import numlib as nl
 
@@ -29,11 +30,6 @@ def solveMulgG(n,a,p):
         if(F(n)**x == F(a)):
             return x
 
-print("Exercise 1",SolveAddG(8,29,17), testAdd(8,29,17))
-print("Exercise 2",SolveAddG(1234,2131233,98765), testAdd(1234,2131233,98765))
-print("exercise 3: ", solveMulgG(5,78,257))
-print("exercise 4: ", solveMulgG(15551,1357,8675309))
-
  
 # y^2 = x^3 +ax +b mod Mymod
 def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
@@ -45,26 +41,35 @@ def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
     E(p2_x,p2_y)
 
 
-p = 19
-F = nl.Zmodp(p)
+""" p = 19
+F = nl.Zmodp(p, negatives = True)
 q = F(7)
 r = F(10)
 P = (2,2)
-Q = (3,4)
-def solveEllip(p,q,r,F,P,Q):
-    E = nl.EllCurve(q,r, debug = True) # create elliptic curve
-    len(list(nl.affine(E)))
-    E(4,19)*0 #magic number
+Q = (3,4) """
+def solveEllip():
 
-    for pt in nl.affine(E):   #print all pts on the Elliptic Curve
-        print(pt) 
-        print(pt)**(-1)
+    print("in")
+    F = nl.Zmodp(37, negatives=True)
+    E = nl.EllCurve(F(5),F(13), debug = True) # create elliptic curve
 
- 
+    for pt in set(list(nl.affine(E))):   #print all pts on the Elliptic Curve
+        print(pt, nl.addorder(pt))
+
+    print(F"{E} has order {len(list(nl.affine(E))) + 1}")
 
     #check if points are in the elliptic curve
     
+#Exercises
+def main():
+    
+    #print("Exercise 1",SolveAddG(8,29,17), testAdd(8,29,17))
+    #print("Exercise 2",SolveAddG(1234,2131233,98765), testAdd(1234,2131233,98765))
+    #print("exercise 3: ", solveMulgG(5,78,257))
+    #print("exercise 4: ", solveMulgG(15551,1357,8675309))
+    print(solveEllip())
 
+main()
         
 
 

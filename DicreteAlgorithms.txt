@@ -28,21 +28,29 @@ Discrete Algorithms:
 
     5&6) Solving Elliptic Curves:                                       LEVEL 3
 
-        p = 47
+        p = 37
         F = nl.Zmodp(p, negatives = True)                   Field including negatives values
-        q = F(40)                                           q value in elliptic curve function
-        r = F(43)                                           r value in elliptic curve function
+        q = F(5)                                           q value in elliptic curve function
+        r = F(13)                                           r value in elliptic curve function
         E =  nl.EllCurve(q,r, debug = True)                  E = elliptic curve (x,y) e (z/47)x(Z/47)
         
         E(1,2)                                              error because P(1,2) is not in the elliptic curve
         len(list(nl.affine(E)))                             return order of the group - 1 (ifinity point)
         E(4,19)*0                                           [0: 1: 0] point of infinity or identity element, it has the elemeny insteal of 2
-        
+        assert E.disc != 0, "curve is singular"
+
+        P = E(12, 5)                                         pt that it is generator in the elliptic curve
+        Q = E(-6, 10)                                        second point also in the elliptic curve
+
+        for x in range(42):                                 we go up to the order
+            if x*P == Q:
+                print(x)                                    22
+
         for pt in nl.affine(E):                             return all point in the curve except of the infinity one
-            print (pt)
+            print (pt, nl.addorder(pt))                     print point and its order
 
+        print(E.disc)
 
-        
 
         E(4,28) + E(7,33)                                   addition of two pt on the elliptic curve 
     
@@ -57,7 +65,11 @@ Ellipic Curve over Z/47:
     - E(13,9) + E(13,-9) = [0:1:0]                         point of infinity or identy
     - P + Q = R beacuse P + Q + R = 0
     - P + P takes the tangent line in the elliptic curve
-    
+    - Every elliptic curve should have 3 distict point with the same order. 
+      if there is only two, one of them most be a double root. Thet means there is 
+      a singularity in th eelliptic curve.
+    - There are more than 3 points with the highest order. 
+    - 
 
                                     IMPORTANT NOTE
 *** Every elliptic curve turn to be a cyclic group or a product of an elliptic curve ***
