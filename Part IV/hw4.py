@@ -33,13 +33,17 @@ def solveMulgG(n,a,p):
  
 # y^2 = x^3 +ax +b mod Mymod
 def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
-    F =nl.Zmodp(myMod)
+    F =nl.Zmodp(myMod, negatives =True)
     E = nl.EllCurve(F(a),F(b), debug=True)
     for pt in nl.affine(E):
         print(pt)
-    E(p1_x,p1_y)
-    E(p2_x,p2_y)
-
+    P = E(p1_x,p1_y)
+    Q = E(p2_x,p2_y)
+    
+    order = nl.affine(E)+1
+    for x in range(order-1):
+        if x*P==Q:
+            print(x)
 
 """ p = 19
 F = nl.Zmodp(p, negatives = True)
@@ -52,11 +56,11 @@ def solveEllip():
     print("in")
     F = nl.Zmodp(37, negatives=True)
     E = nl.EllCurve(F(5),F(13), debug = True) # create elliptic curve
-
+    assert E.disc !=0, "curve is singular" # test if the curve is sigular
     for pt in set(list(nl.affine(E))):   #print all pts on the Elliptic Curve
         print(pt, nl.addorder(pt))
 
-    print(F"{E} has order {len(list(nl.affine(E))) + 1}")
+    print(F"{E} has order {len(list(nl.affine(E))) + 1}") # +1 because we are adding the identity element
 
     #check if points are in the elliptic curve
     
