@@ -1,0 +1,33 @@
+El Gamal Encryotion Scheme 
+
+{G,g,n} where G is a cyclic group, G = <g> and n = |G|.
+
+
+We will have G= (Z/p)*  ( this prime has to be bigger to get the same encryption power as the elyptic curve one)
+, remember this is always cyclic
+
+or G = E(Z/p) 
+
+
+You : pick random (private) d belongs to Z/n (public)            Athena
+
+compute h=g^d                                                   To encrypt m belongs to G
+                                                                Choose r belongs to Z/n
+                                                                Compute C1=g^r
+                                                                Compute c2=h^r*m
+                         (c1,c2)       <----------------------
+decrypt: compute c2 c1  ^-d = h^r*m(g^r)^-decrypt=(g^d)^r * m(g^r)^-d = g^dr * m g ^-dr = m  
+something about I2OSP    
+
+
+
+Let E be an elliptic curve over FZ/p where p is prime. Hiw ca n we findnpoints on E?
+Define by an equation y^2= xx^3+ax+b   a, b in F.
+
+{ f(x) | w in F}  suppose = {5f(17)   5f(100)}
+
+                                E(17,+-3) 
+
+{y^2 | y in F}    suppose = {5} ( and let 5= 3^2)
+
+

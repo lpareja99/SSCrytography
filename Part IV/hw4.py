@@ -63,6 +63,45 @@ def solveEllip():
     print(F"{E} has order {len(list(nl.affine(E))) + 1}") # +1 because we are adding the identity element
 
     #check if points are in the elliptic curve
+
+""" def SolveEll_2(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
+    F =nl.Zmodp(myMod, negatives =True)
+    E = nl.EllCurve(F(a),F(b), debug=True)
+    for pt in nl.affine(E):
+        print(pt)
+    P = E(p1_x,p1_y)
+    Q = E(p2_x,p2_y)
+    
+    order = nl.affine(E)+1
+    for x in range(order-1):
+        if x*P==Q:
+            print(x)
+    coefcls = E.disc.__class__
+    b = E.f(0)
+    a = E.f.derivative()()
+
+
+    if hasattr(coefcls,'char') and coefcls.char and hasattr(coefcls, '__iter__'):
+        y2s = {}
+        fs = {}
+
+
+        # build y2s and fs
+    for x in coefcls:
+        x2 = x ** 2
+        y2s.setdefault(x2,[]).append(x)
+        fs.setdefault(x2 * x +a +b,[]).append(x)
+
+    for y2 in y2s.keys():
+        for f in fs.keys():
+            if y2 == f:
+                for y in y2s[y2]:
+                    yield E(x,y)
+
+    else:
+        return NotImplemented   """     
+
+    
     
 #Exercises
 def main():
@@ -74,6 +113,9 @@ def main():
     print(solveEllip())
 
 main()
+
+
+
         
 
 
