@@ -20,6 +20,7 @@ for x in F:
 
 # affine is total brute force, use for prime < 1000
 # affine 2 does either what we just did or the most complicatd one for when p is congruent to 1
+# To use affine 2, upgrade numlib
 ## affine2(E)  does what we just did. 
 # print(next(affine2(E))
 # pt = next(affine2(E)
