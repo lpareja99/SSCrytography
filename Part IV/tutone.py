@@ -13,5 +13,7 @@ def sqrt(a, p):
 for x in F:
     fx = E.f(x)
     if fx** ((p-1)//2)==1:
-        print(E(x,sqrt(fx)))
+        pt = E(x, sqrt(fx,p))
+        print(pt,'has order', addorder(pt,8676172))
+        
 
