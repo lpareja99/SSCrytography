@@ -17,3 +17,10 @@ for x in F:
         print(pt,'has order', addorder(pt,8676172))
         
 
+
+# affine is total brute force, use for prime < 1000
+# affine 2 does either what we just did or the most complicatd one for when p is congruent to 1
+## affine2(E)  does what we just did. 
+# print(next(affine2(E))
+# pt = next(affine2(E)
+# print(len(list(affine2(E)))
