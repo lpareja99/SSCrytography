@@ -30,20 +30,6 @@ def solveMulgG(n,a,p):
         if(F(n)**x == F(a)):
             return x
 
- 
-# y^2 = x^3 +ax +b mod Mymod
-def SolveEll(a,b,myMod,p1_x,p1_y,p2_x,p2_y,l):
-    F =nl.Zmodp(myMod, negatives =True)
-    E = nl.EllCurve(F(a),F(b), debug=True)
-    for pt in nl.affine(E):
-        print(pt)
-    P = E(p1_x,p1_y)
-    Q = E(p2_x,p2_y)
-    
-    order = nl.affine(E)+1
-    for x in range(order-1):
-        if x*P==Q:
-            print(x)
 
 """ p = 19
 F = nl.Zmodp(p, negatives = True)
@@ -51,16 +37,20 @@ q = F(7)
 r = F(10)
 P = (2,2)
 Q = (3,4) """
-def solveEllip():
+def solveEllip(P,Q,E):
 
-    print("in")
-    F = nl.Zmodp(37, negatives=True)
-    E = nl.EllCurve(F(5),F(13), debug = True) # create elliptic curve
-    assert E.disc !=0, "curve is singular" # test if the curve is sigular
+    points = []
     for pt in set(list(nl.affine(E))):   #print all pts on the Elliptic Curve
-        print(pt, nl.addorder(pt))
+        points.append(pt)
 
-    print(F"{E} has order {len(list(nl.affine(E))) + 1}") # +1 because we are adding the identity element
+    ellipPointSet = set(list(nl.affine(E)))
+    ellipOrder = len(ellipPointSet)
+    #print(F"{E} has order {ellipOrder}") # +1 because we are adding the identity element
+
+    for x in range (ellipOrder):  
+                         
+        if x*P == Q:
+            return(x)
 
     #check if points are in the elliptic curve
 
@@ -106,11 +96,24 @@ def solveEllip():
 #Exercises
 def main():
     
-    #print("Exercise 1",SolveAddG(8,29,17), testAdd(8,29,17))
-    #print("Exercise 2",SolveAddG(1234,2131233,98765), testAdd(1234,2131233,98765))
-    #print("exercise 3: ", solveMulgG(5,78,257))
-    #print("exercise 4: ", solveMulgG(15551,1357,8675309))
-    print(solveEllip())
+    print("Exercise 1",SolveAddG(8,29,17), testAdd(8,29,17))
+    print("Exercise 2",SolveAddG(1234,2131233,98765), testAdd(1234,2131233,98765))
+    print("exercise 3: ", solveMulgG(5,78,257))
+    print("exercise 4: ", solveMulgG(15551,1357,8675309))
+    F = nl.Zmodp(19, negatives=True) # Field of Z/19
+    E = nl.EllCurve(F(-7),F(10), debug = True) # create elliptic curve y^2 = x^3 − 7x + 10
+    #print("Elliptic Curve: ", E)
+    P = E(2,2)
+    Q = E(3,4)
+    print("Exercise 5: ", solveEllip(P,Q,E))
+    
+    F = nl.Zmodp(2027, negatives=True)
+    E = nl.EllCurve(F(1), F(1))
+    #print(" Elleiptic Curve: ", E)
+    P = E(1977,2002)
+    Q = E(58,1022)
+    print("Exercise 6: ", solveEllip(P,Q,E))
+
 
 main()
 

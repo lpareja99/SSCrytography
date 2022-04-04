@@ -1,4 +1,4 @@
-1 - ElGamal Encrytation Scheme
+1 - ElGamal Encrytion Scheme
 
     a. Public key encryption system
     b. Use of zero knowledge encryptation 
@@ -6,7 +6,44 @@
 
     {G,g,n}
     where:
-        - G is a cyclic group
+        - G is a cyclic group (multiplicative)
         - g is a generator og G G =<g>
-        - n is the size of G |G|
+        - n is the order of G |G|
+
+    CODE: Discrete Algorithm way of solve Elliptic Curves
+    ------------------------------------------------------------------------------
+    |   F = nl.Zmodp(41, negatives = True)
+    |   E = nl.EllCaurve(F(5), F(13), debug = True)
+    |   assert (E.disc !=0, "curve is singular") // it would quit if the curve is singular
+    |   print(E)
+    |
+    |   order = len(affine) + 1
+    |   print(" finite points of E:")                           //bruteforce way of getting all the points in an erlliptic curve
+    |   for pt in set(list(nl.affine(E))):
+    |       print(pt, nl.addorder(pt))                          //prints point plus order of the point
+    |
+    |   print(f"{E} has order {len(list(nl.affine(E))) + 1}")   //+1 to add infinity point
+    |
+    |   P = E(18, 20)
+    |   Q = E(-20,20)
+    |
+    |   for x in range(order):
+    |       if x * P == Q:
+    |           print(x)
+    |
+    --------------------------------------
+
+    - give {G,g,n}
+    - G = (Z/p)*
+    - generate your private key (YOU)
+        * generate random number d in  Z/n (private key)
+        * compute h = g^(d), where h is the public key
+
+    - share h with Athena
+    - Athena wants to encrypt a msg m in G.
+        * choose r in Z/need
+        * compute c1 = g^(r)
+        * compute c2 = h^(r) * m
+        * send back (c1,c2)
+        
     
