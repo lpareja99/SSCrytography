@@ -80,9 +80,9 @@ def ex2_part2():
     (0x99697df71db1d265dbb7895cca94ad5aeec0295125f5c5b776db0a3fff, 0x30e58722c80d0e917e6205486f0c862ca10c1a6569e60d06340360d692)]
     i=0
     full_message =""
-    while (i<=len(ciphertexts)):
+    while (i<len(ciphertexts)):
         c1,c2=ciphertexts[i]
-        i+=2
+        i+=1
         c1=F(c1)
         c2=F(c2)
         new_message = c2*((c1)**-d)
