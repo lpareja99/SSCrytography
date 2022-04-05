@@ -86,5 +86,5 @@ Multiplicative Groups:
     3) x = 198 
     4) x = 2027473    
 Elliptic Curves:
-    5) x = 
-    7) x = 
+    5) x = 17
+    7) x = 698

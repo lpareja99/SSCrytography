@@ -31,12 +31,6 @@ def solveMulgG(n,a,p):
             return x
 
 
-""" p = 19
-F = nl.Zmodp(p, negatives = True)
-q = F(7)
-r = F(10)
-P = (2,2)
-Q = (3,4) """
 def solveEllip(P,Q,E):
 
     points = []

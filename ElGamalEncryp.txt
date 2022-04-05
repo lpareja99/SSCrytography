@@ -1,4 +1,4 @@
-1 - ElGamal Encrytion Scheme
+1 - ElGamal ENCRYPTATION SCHEME 
 
     a. Public key encryption system
     b. Use of zero knowledge encryptation 
@@ -45,5 +45,18 @@
         * compute c1 = g^(r)
         * compute c2 = h^(r) * m
         * send back (c1,c2)
-        
-    
+
+
+
+2. ELGamal ENCRYPTATION IN ELLIPTIC CURVES 
+
+    - get msg, split ans assign to x, find a y coordinate that would work for it.
+    - not all numbers are in the elliptic curve (not all numbers can be x)
+    - find x, check if f(x) is a square, is f(x) is a square find sqrt(f(x)) = x
+    - this happens approximately half of the time. 
+    - If not, add a bite (m++1) and try again and so on until you find a square.
+    - c1,c2 are points in the elliptic curve.
+    - How do we get the msg back?
+        - decript proceding and get m, use I2OSP to go back to the bitstring.
+    - we need to know x-lengh befire hand (in this case it is 30)
+    - I DON'T GET THIS LAST STEP :(    
