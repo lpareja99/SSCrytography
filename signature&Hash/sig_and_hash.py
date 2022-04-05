@@ -14,6 +14,7 @@ from exercise12 import I2OSP, OS2IP
 import random
 import numlib as nl
 import math
+from blumblumshub import prbg
 
 
 message = b"to be one, or to be zero, that is the question"
@@ -27,6 +28,7 @@ sha256(message).digest() #bitstring
 p = 44877000451498057437997347977944035796556799528709
 q = 26320393208481318556778606552195768263755411992807
 c = b"A message to encrypt"
+
 
 def OS2IP(X):
     """Return the integer primitive x for the octet-string X."""
@@ -61,6 +63,73 @@ def authenticate(c,s,n,e): # I THINK TO DELETE
     hash_msg = pow(s,e,n)   
     valid = True if hash_msg == c else False
     return valid
+
+# Encrypt method from Simmons
+
+def RSAencrypt(n, e, message):
+    """Return ciphertext given an RSA key {n, e} and a message.
+
+    Args:
+        n (int): the modulus.
+        e (int): the encrypting exponent.
+        message (bytes): the message (as a bytestring) to encrypt.
+
+    Returns:
+        int. A non-negative integer less than n.
+    """
+    # the length of n in whole octets
+    k = math.floor(math.log(n, 256))
+
+    # check that message is short enough leaving room for padding
+    mLen = len(message)
+    if mLen > k - 11:
+        raise ValueError("message too long")
+
+    # generate a random bytes-string consisting of non-zero bytes
+    # (this will have length at least 8)
+    ps = b''
+    while len(ps) < k - mLen - 3:
+        decimal = int(prbg(8), 2)
+        if decimal != 0:
+            ps += decimal.to_bytes(1, byteorder = 'big')
+
+    # pad message and convert to integer, encrypt, and return
+    m = OS2IP(b'\x00' + b'\x02' + ps + b'\x00' + message)
+    return pow(m, e, n)
+
+def RSAdecrypt(n, d, ciphertext):
+    """Return message decrypted from ciphertext using key {n, d}.
+
+    Args:
+        n (int): the modulus.
+        d (int): the decrypting exponent.
+        ciphertext (int): the message to decrypt.
+
+    Returns:
+        bytes. A bytes-string representing the decrypted message.
+    """
+    # get the padded message
+    m = pow(ciphertext, d, n)
+    k = math.floor(math.log(n, 256))
+    message = I2OSP(m, k)
+
+    # strip away the padding
+    error = False
+    if message[0] != 0:
+        error = True
+    message = message[1:]
+    if message[0] != 2:
+        error = True
+    message = message[1:]
+    while message[0] != 0:
+        message = message[1:]
+    if message[0] != 0:
+        error = True
+    message = message[1:]
+
+    assert not error, "decryption error"
+
+    return message
 
 # Decrypt method from Simmons
 #   Note: In the moment you create a signature, to decript it, you pas the public key {n,e} instead of thh
@@ -180,14 +249,22 @@ def ex16_pt2():
     # check if signature is valid
     valid = RSAverify(msg ,s_simmons,public_key_simmons)
     print(valid)
+
+def ex18():
+    message = b"Yes"
+    n_simmons = 0xc66b4f6ab55b33afdffcdec21ec79ca9339cbf49e82feb91b469e99b2fae67f5c04ab5bafa4b75aba04464ab585b6e681e9cf0b765608bb383f582482a49df0a4c689a85073e06d5638163f45ce42d4dd5180c324fe45783cc3313117b53e549984c41d962bc110fd8ddd95f602ef357b6e57732562e47cd8286d05454c51d13ca0bfa7ba2d506a2262410ff78d0bc160a4ca2f7d7ae4ff71c46086cac03c1fe38c679f8edb537055e7e48d60538d85ba9c342fb19c708fdf75bbf76d544569b
+    e_simmons = 65537
+    print(RSAencrypt(n_simmons, e_simmons, message))
+
     
 
     
 
 #ex15(c,p,q)
 #ex16(c,p,q)
-ex16_pt2()
+#ex16_pt2()
 #ex17(p,q)
+ex18()
 
 
 
