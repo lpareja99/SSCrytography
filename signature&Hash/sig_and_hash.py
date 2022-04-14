@@ -254,7 +254,11 @@ def ex18():
     message = b"Yes"
     n_simmons = 0xc66b4f6ab55b33afdffcdec21ec79ca9339cbf49e82feb91b469e99b2fae67f5c04ab5bafa4b75aba04464ab585b6e681e9cf0b765608bb383f582482a49df0a4c689a85073e06d5638163f45ce42d4dd5180c324fe45783cc3313117b53e549984c41d962bc110fd8ddd95f602ef357b6e57732562e47cd8286d05454c51d13ca0bfa7ba2d506a2262410ff78d0bc160a4ca2f7d7ae4ff71c46086cac03c1fe38c679f8edb537055e7e48d60538d85ba9c342fb19c708fdf75bbf76d544569b
     e_simmons = 65537
-    print(RSAencrypt(n_simmons, e_simmons, message))
+    d_marina_laura = 549230482706811301599137164188826043765980672311380088763362378032793681227642719098003036780797315
+    print("Signature:",RSAsign(message,d_marina_laura,n_simmons))
+    c = RSAencrypt(n_simmons, e_simmons, message)
+    print("Message",c)
+   
 
     
 
