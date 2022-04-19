@@ -8,8 +8,8 @@ p = 2**255-19
 F = nl.Zmodp(p)
 a = F(0x2aaaaaaa_aaaaaaaa_aaaaaaaa_aaaaaaaa_aaaaaaaa_aaaaaaaa_aaaaaa98_4914a144)
 b = F(0x7b425ed0_97b425ed_097b425e_d097b425_ed097b42_5ed097b4_260b5e9c_7710c864)
-E = nl.EllCurve(a, b, debug=True)
-q = 0x10000000_00000000_00000000_00000000_14def9de_a2f79cd6_5812631a_5cf5d3ed
+E = nl.EllCurve(a, b, debug=True) #not cyclic but has a large subgroup
+q = 0x10000000_00000000_00000000_00000000_14def9de_a2f79cd6_5812631a_5cf5d3ed #order subgroup
 
 m = (E(0x375357c574ba626305162a7ee1aea098d08115e3b1141ebcfdd7eb93a9f72a07, 0x64f481427dc5e13fa747a4f22c1f2a0498d5e67c834bff39578dd1fa758f730a), 
      E(0x1ee406b7a7646a78472ab6e24fec10379c01c58fb53bb8fc27d0eb40fdea7c3e, 0x1722c75b3d91af25dee9001726aec64591274490b078672b05d745995cf3d032))
@@ -32,7 +32,7 @@ def curve2bytes(points):
     """map a tuple of point(s) on Wei25519 to a byte-string"""
     bytestring = b""
     for point in points:
-        x = int(point.co[0]*point.co[2]**-1)  # the x-coordinate as an integer
+        x = int(point.co[0]*point.co[2]**-1)  # the x-coordinate as an integer (X/Z)
         bytestring += I2OSP(x, xLen = 31)[31 - math.ceil(math.log(x, 256)):-1]
     return bytestring
 

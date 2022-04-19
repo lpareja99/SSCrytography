@@ -60,3 +60,5 @@
         - decript proceding and get m, use I2OSP to go back to the bitstring.
     - we need to know x-lengh befire hand (in this case it is 30)
     - I DON'T GET THIS LAST STEP :(    
+
+    - 
