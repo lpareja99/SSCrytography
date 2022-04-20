@@ -51,6 +51,10 @@ def RSAKeyPair(p,q):
     #print(" Public RSA key: \nn:", n, "\ne: ", e)
     return [n,e,d]
 
+
+def RSAsign_2(n, d, message):
+    return RSAencrypt(n, d, sha256(message).digest())
+
 def RSAsign(c,d,n): # exercise
     # 1) encript the msg
     chash = int.from_bytes(sha256(c).digest(),byteorder='big')
@@ -255,11 +259,14 @@ def ex18():
     n_simmons = 0xc66b4f6ab55b33afdffcdec21ec79ca9339cbf49e82feb91b469e99b2fae67f5c04ab5bafa4b75aba04464ab585b6e681e9cf0b765608bb383f582482a49df0a4c689a85073e06d5638163f45ce42d4dd5180c324fe45783cc3313117b53e549984c41d962bc110fd8ddd95f602ef357b6e57732562e47cd8286d05454c51d13ca0bfa7ba2d506a2262410ff78d0bc160a4ca2f7d7ae4ff71c46086cac03c1fe38c679f8edb537055e7e48d60538d85ba9c342fb19c708fdf75bbf76d544569b
     e_simmons = 65537
     d_marina_laura = 549230482706811301599137164188826043765980672311380088763362378032793681227642719098003036780797315
-    s = RSAsign(message,d_marina_laura,n_simmons)
+    my_n = 1181180297900622537506127198477981514841813682949089928220108951255708821489739695123415064097996163
+    s = RSAsign_2(my_n,d_marina_laura,message)
     print("Signature:",s)
     c = RSAencrypt(n_simmons, e_simmons, message)
     print("Message",c)
-    public_k = [n_simmons,e_simmons]
+    e = 835937754772491041426113458976152014686797422701759713870028802309149705366715474017367236669502675
+    public_k = [my_n,e]
+    
     #fix this
     print(RSAverify(c, s, public_k))
    
